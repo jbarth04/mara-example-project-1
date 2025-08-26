@@ -20,3 +20,9 @@ Flask>=1.0.2
 
 # temporarily pin until https://github.com/kvesteri/sqlalchemy-utils/issues/462 is fixed
 SQLAlchemy-Utils==0.36.7
+
+# microservices dependencies
+redis==4.5.4
+psycopg2-binary==2.9.6
+python-dotenv==1.0.0
+pydantic==1.10.7
