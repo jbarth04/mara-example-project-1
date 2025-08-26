@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  marketing-data-service:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OLIST_DB_HOST=localhost
+      - OLIST_DB_USER=root
+      - OLIST_DB_NAME=olist_ecommerce
+      - DWH_DB_HOST=localhost
+      - DWH_DB_USER=root
+      - DWH_DB_NAME=example_project_1_dwh
+      - LOG_LEVEL=INFO
+      - EVENT_PUBLISHER_TYPE=database
+      - MAX_PARALLEL_TASKS=5
+      - RETRY_ATTEMPTS=3
+      - RETRY_DELAY=1.0
+    depends_on:
+      - postgres
+    networks:
+      - marketing-data-network
+
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - marketing-data-network
+
+volumes:
+  postgres_data:
+
+networks:
+  marketing-data-network:
+    driver: bridge

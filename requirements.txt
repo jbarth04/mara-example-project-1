@@ -20,3 +20,12 @@ Flask>=1.0.2
 
 # temporarily pin until https://github.com/kvesteri/sqlalchemy-utils/issues/462 is fixed
 SQLAlchemy-Utils==0.36.7
+
+# marketing data microservice dependencies
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+asyncpg>=0.24.0
+pydantic>=1.8.0
+python-multipart>=0.0.5
+pytest>=6.0.0
+pytest-asyncio>=0.15.0
