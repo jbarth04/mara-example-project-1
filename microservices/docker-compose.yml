@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+  data_loader:
+    build:
+      context: ./data_loader
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    environment:
+      - DWH_DB_HOST=host.docker.internal
+      - OLIST_DB_HOST=host.docker.internal
+      - REDIS_HOST=redis
+    volumes:
+      - ./common:/app/common
+
+  lead_processor:
+    build:
+      context: ./lead_processor
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+      - data_loader
+    environment:
+      - DWH_DB_HOST=host.docker.internal
+      - REDIS_HOST=redis
+    volumes:
+      - ./common:/app/common
+
+volumes:
+  redis_data:
