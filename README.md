@@ -1,6 +1,8 @@
 # Mara Example Project 1
 
-A runnable app that demonstrates how to build a data warehouse with mara. 
+A runnable app that demonstrates how to build a data warehouse with mara.
+
+<!-- Dummy change for testing PR creation -->
 Combines the [mara-pipelines](https://github.com/mara/mara-pipelines) and 
 [mara-schema](https://github.com/mara/mara-schema) libraries 
 with the [mara-app](https://github.com/mara/mara-app) framework into a project. 
